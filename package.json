@@ -1,6 +1,6 @@
 {
   "type": "module",
   "dependencies": {
-    "@1password/sdk": "^0.2.1",
+    "@1password/sdk": "^0.2.1"
   }
 }
