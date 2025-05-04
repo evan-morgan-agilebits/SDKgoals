@@ -18,7 +18,12 @@ const client = await createClient({
   integrationVersion: "v1.0.0",
 });
 
-// Fetches a secret.
-const secret = await client.secrets.resolve("op://actuuallyamaizn/mhm/password");
-
-console.log(secret)
+exec('sh ./myscript.sh', (error, stdout, stderr) => {
+  if (error) {
+    return console.error(error.message)
+  }
+  if (stderr) {
+    return console.error(stderr);
+  }
+  console.log("terminal output:", stdout)
+});
