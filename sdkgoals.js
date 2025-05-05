@@ -4,14 +4,14 @@ import { execSync } from 'child_process';
 
 //trys installing the CLI
 try {
-  execSync('brew install 1password-cli');
-  console.log('1Password CLI is now installed.');
-  //If fails will print the specific error.
+  execSync('brew install 1password-cli' && 'op --version' && 'op');
+  
 } catch (error) {
-  console.error('Failed to install 1Password CLI:', error.message);
+  console.error('Error:', error.message);
 }
 
-execSync('op --version')
+execSync('op --version', 'lol')
+execSync('op --version', { encoding: 'utf8' })
 
 // Creates an authenticated client.
 const client = await createClient({
@@ -21,12 +21,6 @@ const client = await createClient({
   integrationVersion: "v1.0.0",
 });
 
-// exec('sh ./myscript.sh', (error, stdout, stderr) => {
-//   if (error) {
-//     return console.error(error.message)
-//   }
-//   if (stderr) {
-//     return console.error(stderr);
-//   }
-//   console.log("terminal output:", stdout)
-// });
+const secret = await client.secrets.resolve("op://vault/item/field")
+console.log(secret)
+
