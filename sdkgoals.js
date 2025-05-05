@@ -10,6 +10,9 @@ try {
 } catch (error) {
   console.error('Failed to install 1Password CLI:', error.message);
 }
+
+execSync('op --version')
+
 // Creates an authenticated client.
 const client = await createClient({
   auth: process.env.OP_SERVICE_ACCOUNT_TOKEN,
@@ -18,12 +21,12 @@ const client = await createClient({
   integrationVersion: "v1.0.0",
 });
 
-exec('sh ./myscript.sh', (error, stdout, stderr) => {
-  if (error) {
-    return console.error(error.message)
-  }
-  if (stderr) {
-    return console.error(stderr);
-  }
-  console.log("terminal output:", stdout)
-});
+// exec('sh ./myscript.sh', (error, stdout, stderr) => {
+//   if (error) {
+//     return console.error(error.message)
+//   }
+//   if (stderr) {
+//     return console.error(stderr);
+//   }
+//   console.log("terminal output:", stdout)
+// });
