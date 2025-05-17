@@ -9,7 +9,7 @@ try {
 } catch (error) {
   console.error('Error:', error.message);
 }
-
+//test
 execSync('op --version', 'lol')
 execSync('op --version', { encoding: 'utf8' })
 
