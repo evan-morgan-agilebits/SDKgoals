@@ -30,7 +30,8 @@ const itemListJson = execSync(
   `op item list --vault=${vault} --session=${session}`,
   { encoding: 'utf-8' }
 );
-
+//greg
 const items = JSON.parse(itemListJson);
 
 console.log('Items in vault:', items);
+
