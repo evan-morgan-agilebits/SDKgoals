@@ -13,14 +13,24 @@ try {
 execSync('op --version', 'lol')
 execSync('op --version', { encoding: 'utf8' })
 
-// Creates an authenticated client.
-const client = await createClient({
-  auth: process.env.OP_SERVICE_ACCOUNT_TOKEN,
-  // Set the following to your own integration name and version.
-  integrationName: "SDK Goals",
-  integrationVersion: "v1.0.0",
-});
+//Capture Service Account Token
+const token = process.env.OP_SERVICE_ACCOUNT_TOKEN;
 
-const secret = await client.secrets.resolve("op://vault/item/field")
-console.log(secret)
 
+// Sign in and get the session token by piping token into op
+const session = execSync(
+  `echo "${token}" | op service-account signin --raw`,
+  { encoding: 'utf-8' }
+).trim();
+
+const vault = 'actuuallyamaizn'
+
+// Run the op CLI to list items in JSON format, authenticated with the session token
+const itemListJson = execSync(
+  `op item list --vault=${vault} --session=${session}`,
+  { encoding: 'utf-8' }
+);
+
+const items = JSON.parse(itemListJson);
+
+console.log('Items in vault:', items);
