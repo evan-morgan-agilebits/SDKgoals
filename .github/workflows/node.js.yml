@@ -1,24 +1,20 @@
-name: Run Script on Pull Request
+name: Run Script
 
 on:
-  pull_request:
-    branches: [ main ] # or the target branch for your PRs
+  push:
+    branches:
+      - main  # or any other branch
 
 jobs:
-  run-node-script:
+  run-custom-script:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18' # or your required version
+      - name: Run deploy.sh
+        run: ./sdkgoals.js
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run setup script
-        run: node sdkgoals.js
