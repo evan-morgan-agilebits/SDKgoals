@@ -31,6 +31,13 @@ try {
   console.error('Error:', error.message);
 }
 
+//test op commands
+try {
+  execSync(op vault list)
+  
+} catch (error) {
+  console.error('Error:', error.message);
+}
 
 
 
