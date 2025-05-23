@@ -13,11 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run SDK Goals script
-        env:
-          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-        run: node ./sdkgoals.js
-
-      - name: test op command
+      - name: install cli
         run: |
-         op vault list
+          node sdk sdkgoals.js
+          op --version
+      
+      - name: test cli
+        env: 
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        run: |
+          op vault list
