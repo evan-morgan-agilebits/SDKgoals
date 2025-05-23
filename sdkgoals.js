@@ -4,9 +4,8 @@ import { execSync } from 'child_process';
 
 //Capture Service Account Token
 const token = process.env.OP_SERVICE_ACCOUNT_TOKEN;
-
+const exportedToken = `export OP_SERVICE_ACCOUNT_TOKEN=${token}`
 const installCli = `
-export OP_SERVICE_ACCOUNT_TOKEN=${token} &&
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg &&
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | sudo tee /etc/apt/sources.list.d/1password.list &&
 sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/ &&
@@ -24,7 +23,13 @@ try {
 } catch (error) {
   console.error('Error:', error.message);
 }
-
+//Export service account token
+try {
+  execSync(exportedToken)
+  
+} catch (error) {
+  console.error('Error:', error.message);
+}
 
 
 
