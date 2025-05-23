@@ -33,7 +33,7 @@ try {
 
 //test op commands
 try {
-  execSync("op vault list")
+  execSync(console.log(op vault list))
   
 } catch (error) {
   console.error('Error:', error.message);
