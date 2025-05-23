@@ -14,7 +14,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run SDK Goals script
-        run: node ./sdkgoals.js
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        run: node ./sdkgoals.js
 
+      - name: test op command
+        run: |
+         op vault list
