@@ -2,36 +2,29 @@ import { createClient } from "@1password/sdk";
 
 import { execSync } from 'child_process';
 
+const installCli = `
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg &&
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | sudo tee /etc/apt/sources.list.d/1password.list &&
+sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/ &&
+curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol &&
+sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 &&
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg &&
+sudo apt update &&
+sudo apt install -y 1password-cli
+`;
+//Capture Service Account Token
+const token = process.env.OP_SERVICE_ACCOUNT_TOKEN;
+const exportedToken = `export OP_SERVICE_ACCOUNT_TOKEN=token`
 //trys installing the CLI
 try {
-  execSync('brew install 1password-cli' && 'op --version' && 'op');
+  execSync(installCli);
   
 } catch (error) {
   console.error('Error:', error.message);
 }
-//test
-execSync('op --version', 'lol')
-execSync('op --version', { encoding: 'utf8' })
 
-//Capture Service Account Token
-const token = process.env.OP_SERVICE_ACCOUNT_TOKEN;
+execSync(exportedToken)
 
 
-// Sign in and get the session token by piping token into op
-const session = execSync(
-  `echo "${token}" | op service-account signin --raw`,
-  { encoding: 'utf-8' }
-).trim();
 
-const vault = 'actuuallyamaizn'
-
-// Run the op CLI to list items in JSON format, authenticated with the session token
-const itemListJson = execSync(
-  `op item list --vault=${vault} --session=${session}`,
-  { encoding: 'utf-8' }
-);
-//greg
-const items = JSON.parse(itemListJson);
-
-console.log('Items in vault:', items);
 
