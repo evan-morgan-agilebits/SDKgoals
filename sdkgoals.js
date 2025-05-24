@@ -17,10 +17,7 @@ sudo apt install -y 1password-cli
 `;
 
 exec(installCli, (error, message, sterr)=> {
-  const opCommands = `${exportedToken} && op vault ls
-  exec(opCommands, (error, output, sterr) => {
-    console.log(output);
-  });
+  console.log(message)
 });
 
 
