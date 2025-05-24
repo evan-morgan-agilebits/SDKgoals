@@ -1,6 +1,6 @@
 import { createClient } from "@1password/sdk";
 
-import { execSync } from 'child_process';
+import { exec } from 'child_process';
 
 //Capture Service Account Token
 const token = process.env.OP_SERVICE_ACCOUNT_TOKEN;
@@ -16,28 +16,14 @@ sudo apt update &&
 sudo apt install -y 1password-cli
 `;
 
-//trys installing the CLI
-try {
-  execSync(installCli);
-  
-} catch (error) {
-  console.error('Error:', error.message);
-}
-//Export service account token
-try {
-  execSync(exportedToken)
-  
-} catch (error) {
-  console.error('Error:', error.message);
-}
+exec(installCLI, (error, message, sterr)=> {
+  const opCommands = `${exportedToken} && op vault ls
+  exec(opCommands, (error, output, sterr) => {
+    console.log(output);
+  });
+});
 
-//test op commands
-try {
-  execSync("op vault list")
-  
-} catch (error) {
-  console.error('Error:', error.message);
-}
+
 
 
 
