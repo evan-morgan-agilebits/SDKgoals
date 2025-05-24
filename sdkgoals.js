@@ -16,7 +16,7 @@ sudo apt update &&
 sudo apt install -y 1password-cli
 `;
 
-
+exec(installCli);
 
 
 
