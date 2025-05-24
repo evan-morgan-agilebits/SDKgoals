@@ -16,12 +16,7 @@ sudo apt update &&
 sudo apt install -y 1password-cli
 `;
 
-exec(installCLI, (error, message, sterr)=> {
-  const opCommands = `${exportedToken} && op vault ls
-  exec(opCommands, (error, output, sterr) => {
-    console.log(output);
-  });
-});
+
 
 
 
