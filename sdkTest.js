@@ -1,5 +1,20 @@
 import { createClient } from "@1password/sdk";
 
+const { exec } = require('child_process');
+
+exec('npm install @1password/sdk', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error: ${error.message}`);
+    return;
+  }
+  if (stderr) {
+    console.error(`Stderr: ${stderr}`);
+    return;
+  }
+  console.log(`Output: ${stdout}`);
+});
+
+
 // Creates an authenticated client.
 const client = await createClient({
   auth: process.env.OP_SERVICE_ACCOUNT_TOKEN,
