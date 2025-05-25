@@ -11,13 +11,18 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 
+
+      - name: js sdk
+        env: 
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        run: node sdkTest.js
 
       - name: install cli
         env: 
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
         run: |
-          node sdkgoals.js
+          node cliTest.js
           op --version
       
       - name: test cli
