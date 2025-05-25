@@ -1,6 +1,6 @@
 import { createClient } from "@1password/sdk";
 
-const { exec } = require('child_process');
+import { exec } from 'child_process';
 
 exec('npm install @1password/sdk', (error, stdout, stderr) => {
   if (error) {
