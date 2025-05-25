@@ -1,18 +1,6 @@
 import { createClient } from "@1password/sdk";
-
+import sdk from "@1password/sdk";
 import { exec } from 'child_process';
-
-exec('npm install @1password/sdk', (error, stdout, stderr) => {
-  if (error) {
-    console.error(`Error: ${error.message}`);
-    return;
-  }
-  if (stderr) {
-    console.error(`Stderr: ${stderr}`);
-    return;
-  }
-  console.log(`Output: ${stdout}`);
-});
 
 
 // Creates an authenticated client.
@@ -27,7 +15,7 @@ const client = await createClient({
 let item = await client.items.create({
     title: "TestItem",
     category: sdk.ItemCategory.Login,
-    vaultId: w24doqg47q4bcmqto6wphqn7ye,
+    vaultId: "w24doqg47q4bcmqto6wphqn7ye",
     fields: [
       {
         id: "username",
