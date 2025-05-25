@@ -22,7 +22,7 @@ exec(installCli, (error, message, sterr)=> {
   const opCommands = `${exportedToken} && op item get testItem --format json --vault w24doqg47q4bcmqto6wphqn7ye`;
   exec(opCommands, (error, item, sterr)=> {
     console.log('2')
-    console.log(item, 'lol');
+    console.log(item, 'flol');
   });
 });
 
