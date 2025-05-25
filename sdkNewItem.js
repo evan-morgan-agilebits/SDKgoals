@@ -1,7 +1,5 @@
 import { createClient } from "@1password/sdk";
 import sdk from "@1password/sdk";
-import { exec } from 'child_process';
-
 
 // Creates an authenticated client.
 const client = await createClient({

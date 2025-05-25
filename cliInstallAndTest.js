@@ -1,5 +1,3 @@
-import { createClient } from "@1password/sdk";
-
 import { exec } from 'child_process';
 
 
@@ -7,6 +5,8 @@ import { exec } from 'child_process';
 //Capture Service Account Token
 const token = process.env.OP_SERVICE_ACCOUNT_TOKEN;
 const exportedToken = `export OP_SERVICE_ACCOUNT_TOKEN=${token}`
+
+//install the Cli commands in Ubuntu VM
 const installCli = `
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg &&
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | sudo tee /etc/apt/sources.list.d/1password.list &&
@@ -18,10 +18,11 @@ sudo apt update &&
 sudo apt install -y 1password-cli
 `;
 
+//Execute the commands to install and then read the item generated from the SDK.
 exec(installCli, (error, message, sterr)=> {
   const opCommands = `${exportedToken} && op item get testItem --format json --vault w24doqg47q4bcmqto6wphqn7ye`;
-  exec(opCommands, (error, output, sterr)=> {
-    console.log(output);
+  exec(opCommands, (error, itemOutput, sterr)=> {
+    console.log(itemOutput);
   });
 });
 

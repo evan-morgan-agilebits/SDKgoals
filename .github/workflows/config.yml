@@ -1,4 +1,4 @@
-name: Run Script
+name: Github Action Exercise
 
 on:
   push:
@@ -13,19 +13,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3 
 
-      - name: js sdk
+      - name: Generate item via sdkTest.js
         env: 
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-        run: node sdkTest.js
+        run: node sdkNewItem.js
 
-      - name: install cli
+      - name: Install CLI and retrieve item details
         env: 
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
         run: |
-          node cliTest.js
+          node cliInstallAndTest.js
           op --version
       
-      - name: test cli
+      - name: Execute additional CLI commands directly in Config file.
         env: 
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
         run: |
