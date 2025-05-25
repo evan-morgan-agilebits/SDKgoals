@@ -1,7 +1,5 @@
 import { exec } from 'child_process';
 
-
-
 //Capture Service Account Token
 const token = process.env.OP_SERVICE_ACCOUNT_TOKEN;
 const exportedToken = `export OP_SERVICE_ACCOUNT_TOKEN=${token}`
