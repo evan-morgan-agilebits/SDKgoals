@@ -24,7 +24,7 @@ exec(installCli, (error, message, sterr)=> {
   });
 });
 
-//test
+//testr
 
 
 
