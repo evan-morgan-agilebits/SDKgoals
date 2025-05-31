@@ -29,5 +29,4 @@ jobs:
         env: 
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
         run: |
-          op vault list
           op item list --vault w24doqg47q4bcmqto6wphqn7ye 
