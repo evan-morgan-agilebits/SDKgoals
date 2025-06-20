@@ -2,7 +2,7 @@ import { exec } from 'child_process';
 
 //Capture Service Account Token
 const token = process.env.OP_SERVICE_ACCOUNT_TOKEN;
-//const exportedToken = `export OP_SERVICE_ACCOUNT_TOKEN=${token}`
+const exportedToken = `export OP_SERVICE_ACCOUNT_TOKEN=${token}`
 
 //install the Cli commands in Ubuntu VM
 const installCli = `
@@ -18,7 +18,7 @@ sudo apt install -y 1password-cli
 
 //Execute the commands to install and then read the item generated from the SDK.
 exec(installCli, (error, message, sterr)=> {
-  const opCommands = `${token} && op item get TestItem --format json --vault w24doqg47q4bcmqto6wphqn7ye`;
+  const opCommands = `${exportedToken} && op item get TestItem --format json --vault w24doqg47q4bcmqto6wphqn7ye`;
   exec(opCommands, (error, item, sterr)=> {
     console.log('plz', item);
     console.log('wow')
