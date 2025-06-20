@@ -11,7 +11,7 @@ const client = await createClient({
 
 // Creates an item
 let item = await client.items.create({
-    title: "TestItem",
+    title: "wow21",
     category: sdk.ItemCategory.Login,
     vaultId: "w24doqg47q4bcmqto6wphqn7ye",
     fields: [
