@@ -18,7 +18,7 @@ sudo apt install -y 1password-cli
 
 //Execute the commands to install and then read the item generated from the SDK.
 exec(installCli, (error, message, sterr)=> {
-  const opCommands = `${exportedToken} && op item get testItem --format json --vault w24doqg47q4bcmqto6wphqn7ye`;
+  const opCommands = `${exportedToken} && op item get TestItem --format json --vault w24doqg47q4bcmqto6wphqn7ye`;
   exec(opCommands, (error, item, sterr)=> {
     console.log(item);
   });
