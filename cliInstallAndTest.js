@@ -29,7 +29,7 @@ exec(installCli, (error, message, sterr)=> {
   });
 });
 
-//testrwd
+//testrwdr
 
 
 
