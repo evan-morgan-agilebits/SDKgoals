@@ -21,7 +21,11 @@ exec(installCli, (error, message, sterr)=> {
   const opCommands = `${token} && op item get wow21 --format json --vault actuuallyamaizn`;
   exec(opCommands, (error, item, sterr)=> {
     console.log('plz', item);
-    console.log(opCommands)
+    if (error) {
+      console.error('Error fetching item:', error);
+      console.error('stderr:', sterr);
+      return;
+    }
   });
 });
 
