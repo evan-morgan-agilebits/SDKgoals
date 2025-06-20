@@ -18,7 +18,7 @@ sudo apt install -y 1password-cli
 
 //Execute the commands to install and then read the item generated from the SDK.
 exec(installCli, (error, message, sterr)=> {
-  const opCommands = `${token} && op item get wow21 --format json --vault w24doqg47q4bcmqto6wphqn7ye`;
+  const opCommands = `${token} && op item get wow21 --format json --vault actuuallyamaizn`;
   exec(opCommands, (error, item, sterr)=> {
     console.log('plz', item);
     console.log('wow')
