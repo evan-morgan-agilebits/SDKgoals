@@ -20,13 +20,7 @@ sudo apt install -y 1password-cli
 exec(installCli, (error, message, sterr)=> {
   const opCommands = `${exportedToken} && op item get wow21 --format json --vault actuuallyamaizn`;
   exec(opCommands, (error, item, sterr)=> {
-    console.log('plz', item);
-    if (error) {
-      console.error('Error fetching item:', error);
-      console.error('stderr:', sterr);
-      return;
-    }
+    console.log(item);
   });
 });
 
-//testrwdr

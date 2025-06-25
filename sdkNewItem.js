@@ -52,4 +52,4 @@ let item = await client.items.create({
     ],
   });
 
-  console.log(item, 'lol')
+  console.log(item)

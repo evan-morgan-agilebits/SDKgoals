@@ -28,5 +28,4 @@ jobs:
       - name: Execute additional CLI commands directly in Config file.
         env: 
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-        run: |
-          op item list --vault w24doqg47q4bcmqto6wphqn7ye 
+        run: op item list --vault w24doqg47q4bcmqto6wphqn7ye 
