@@ -30,6 +30,3 @@ exec(installCli, (error, message, sterr)=> {
 });
 
 //testrwdr
-
-
-
